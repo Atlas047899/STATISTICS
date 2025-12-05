@@ -1,0 +1,89 @@
+data_list = [
+    1115, 1567, 1223, 1782, 1055,
+    1310, 1883, 375, 1522, 1764,
+    1540, 1203, 2265, 1792, 1330,
+    1502, 1270, 1910, 1000, 1608,
+    1258, 1015, 1018, 1820, 1535,
+    1315, 845, 1452, 1940, 1781,
+    1085, 1674, 1890, 1120, 1750,
+    798, 1016, 2100, 910, 1501,
+    1020, 1102, 1594, 1730, 1238,
+    865, 1605, 2023, 1102, 990,
+    2130, 706, 1315, 1578, 1468,
+    1421, 2215, 1269, 758, 1512,
+    1109, 785, 1260, 1416, 1750,
+    1481, 885, 1888, 1560, 1642
+]
+
+sort_data_list = sorted(data_list)
+
+
+count = 0
+count1 = 0
+
+range_list = len(str(sort_data_list))
+
+stem_all = []
+stem = []
+leaf = []
+leaf_all = []
+leaf_loop = []
+
+range_list = len(sort_data_list)
+
+for i in range(range_list):
+    com_1_str_sort_data_list = str(sort_data_list[i])
+
+    com_1_range_sort_data_list = len(com_1_str_sort_data_list)
+    
+    stem1 = com_1_range_sort_data_list - 1
+    
+    com_1 = com_1_str_sort_data_list[0 : stem1]
+    leaf_value = com_1_str_sort_data_list[stem1]
+
+    stem_all.append(com_1)
+    leaf_all.append(leaf_value)
+
+
+for i in range(range_list - 1):
+    com_1_str_sort_data_list = str(sort_data_list[i])
+    com_2_str_sort_data_list = str(sort_data_list[i + 1])
+
+    com_1_range_sort_data_list = len(com_1_str_sort_data_list)
+    com_2_range_sort_data_list = len(com_2_str_sort_data_list)
+    
+    stem1 = com_1_range_sort_data_list - 1
+    stem2 = com_2_range_sort_data_list - 1
+    
+    com_1 = com_1_str_sort_data_list[0 : stem1]
+    com_2 = com_2_str_sort_data_list[0 : stem2]
+    
+    if i == 0 :
+        stem.append(com_1)
+
+    if com_1 != com_2:
+        stem.append(com_2)
+
+while True:
+    if count ==  (len(stem) - 1):
+        print(count , count1)
+        if stem[count] == stem_all[count1]:
+            leaf_loop.append(leaf_all[count1])
+            leaf.append(leaf_loop)
+            break
+        elif stem[count] != stem_all[count1]:
+            leaf_loop = []
+            leaf_loop.append(leaf_all[count1])
+            leaf.append(leaf_loop)
+            break
+    elif stem[count] == stem_all[count1]:
+        leaf_loop.append(leaf_all[count1])
+        count1 = count1 + 1
+    elif stem[count] != stem_all[count1]:
+        leaf.append(leaf_loop)
+        leaf_loop = []
+        count = count + 1
+    
+print("\tstem\t\t|\t\tleaf")
+for i in range(len(leaf)):
+    print(f"\t {stem[i]}\t\t|\t\t{leaf[i]}")
